@@ -12,11 +12,13 @@ public class SecondaryFire : MonoBehaviour {
 	[HideInInspector]
 	public int remainingShots;
 
-	//private
+    //private
+    [SerializeField] private AudioClip m_WaveShotSound;
+    [SerializeField] private AudioClip m_WaveReloadSound;
+    private AudioSource m_AudioSource;
 
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
 		secondFire = this;
         remainingShots = maxShots;
@@ -28,12 +30,26 @@ public class SecondaryFire : MonoBehaviour {
 		}
 	}
 
-	public void Fire(){
+    public void PlayWaveShotSound(){
+        if (m_WaveShotSound) {
+            m_AudioSource.PlayOneShot(m_WaveShotSound);
+        }
+    }
+
+    public void PlayWaveReloadSound()
+    {
+        if (m_WaveReloadSound)
+        {
+            m_AudioSource.PlayOneShot(m_WaveReloadSound);
+        }
+    }
+
+    public void Fire(){
 		if (remainingShots > 0) {
 			GameObject.Instantiate (LightWaveBullet, transform.position + new Vector3(0.0f, 1.5f), transform.rotation);
-			remainingShots--;
-
-			if (remainingShots == 0) {
+            PlayWaveShotSound();
+            remainingShots--;
+            if (remainingShots == 0) {
 				StartCoroutine ("recharge");
 			}
 		}
@@ -41,7 +57,7 @@ public class SecondaryFire : MonoBehaviour {
 
 	IEnumerator recharge(){
 		yield return new WaitForSeconds (2.0f);
-
-		remainingShots++;
+        PlayWaveReloadSound();
+        remainingShots++;
 	}
 }
