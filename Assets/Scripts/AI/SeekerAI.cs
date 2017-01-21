@@ -14,15 +14,15 @@ public class SeekerAI : EnemyAI
 
     public SeekerState curState;
 
-    public float proximityRadius;
-    float defaultRadius; //Assign value
+    float attackDamage = 20f;
+    float proximityRadius = 15f;
+    float defaultRadius = 5f; //Assign value
     float lightRadius; //Assign value
     float playerDist;
 
     Vector3 playerPosition;
     NavMeshAgent agent;
     GameObject player;
-    float attackDamage = 20f;
 
     // Use this for initialization
     void Start ()
