@@ -59,4 +59,10 @@ public class PlayerCharacter : MonoBehaviour {
         lifes--;
         //if(lifes == 0) Play Death Animation && Call Score UI
     }
+
+    public void LoseHealthPoint(float healthLoss)
+    {
+        healthPoint -= healthLoss;
+        if (healthPoint <= 0) LoseLife();
+    }
 }
