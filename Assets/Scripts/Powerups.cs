@@ -6,5 +6,5 @@ public abstract class Powerups : MonoBehaviour {
     // Use this for initialization
     protected abstract void Awake();
 
-    protected abstract void OnCollisionEnter(Collision collision);
+    protected abstract void OnTriggerEnter(Collider other);
 }
