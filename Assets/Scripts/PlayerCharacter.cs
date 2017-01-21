@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
 
+    public static PlayerCharacter pc;
+
     // For shooting purposes
     public GameObject particleShot;
     public float shotDistance = 100;
 
 	private SecondaryFire _secondaryFire;
+    
     // Data
     int lifes = 5;
     public int maxLifes = 5;
@@ -18,6 +21,7 @@ public class PlayerCharacter : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        pc = this;
 		_secondaryFire = GetComponentInChildren<SecondaryFire> ();
 	}
 
@@ -49,5 +53,11 @@ public class PlayerCharacter : MonoBehaviour {
         {
             // TODO Health life
         }
+    }
+
+    public void LoseLife()
+    {
+        lifes--;
+        //if(lifes == 0) Play Death Animation && Call Score UI
     }
 }

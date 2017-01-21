@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyPickup : Powerups {
+public class Trap : Powerups
+{
     protected override void Awake()
     {
 
@@ -11,9 +12,11 @@ public class EnergyPickup : Powerups {
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player") {
-            SecondaryFire.sf.addEnergy();
+        if (other.gameObject.tag == "Player")
+        {
+            PlayerCharacter.pc.LoseLife();
             Destroy(gameObject);
-        } 
+            Debug.Log("xxx");
+        }
     }
 }
