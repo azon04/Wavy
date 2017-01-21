@@ -12,6 +12,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        static public FirstPersonController fpc;
         public bool Trapped = false;
         //Vector3 TrappedPosition;
 
@@ -50,6 +51,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         private void Start()
         {
+            fpc = this;
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -221,9 +223,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Read input
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-
-            if (Trapped) vertical = 0f;
-
+        
             bool waswalking = m_IsWalking;
 
 #if !MOBILE_INPUT
@@ -240,6 +240,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Input.Normalize();
             }
+
+            if (Trapped) m_Input[1] = 0f;
 
             // handle speed change to give an fov kick
             // only if the player is going to a run, is running and the fovkick is to be used
