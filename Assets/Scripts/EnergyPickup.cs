@@ -12,14 +12,10 @@ public class EnergyPickup : Powerups
 
     protected override void OnTriggerEnter(Collider other)
     {
-<<<<<<< HEAD
+
         if (other.gameObject.tag == "Player") SecondaryFire.secFire.addEnergy();
         Destroy(gameObject);
-=======
-        if (other.gameObject.tag == "Player")
-        {
 
-        }
->>>>>>> origin/AI_branch
+
     }
 }
