@@ -45,17 +45,9 @@ public class PlayerCharacter : MonoBehaviour {
 
     void ShootWave()
     {
-        waveCount--;
+        //waveCount--;
 
         // TODO Wave
 
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            // TODO Health life
-        }
     }
 }
