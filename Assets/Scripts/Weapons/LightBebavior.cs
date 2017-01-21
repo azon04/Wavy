@@ -7,13 +7,15 @@ public class LightBebavior : MonoBehaviour
     public Light lt;
     public float growing_speed;
     public float LightIntensity;
-    public float timer;
+    public float maxTimer;
+	public float timer;
     public float maxRange;
     public float intensity_fading_speed;
 
     // private
     private float LightRange = 0.0f;
     private float duration = 0;
+	//private float intensity;
     //private bool isMaxRange = false;
 
 
@@ -34,19 +36,19 @@ public class LightBebavior : MonoBehaviour
 
         if (LightRange <= maxRange)
         {
-            LightRange += Time.deltaTime * growing_speed;
+			LightRange += Time.deltaTime * growing_speed * maxRange;
             lt.range = LightRange;
         }
         else
         {
             //isMaxRange = true;
-            if(duration < timer)
+            if(duration < maxTimer)
             {
-                duration += Time.deltaTime * timer;
+                duration += Time.deltaTime;
             }
             else
             {
-                lt.intensity -= Time.deltaTime * intensity_fading_speed;
+				lt.intensity -= Time.deltaTime * intensity_fading_speed;
             }
         }
 

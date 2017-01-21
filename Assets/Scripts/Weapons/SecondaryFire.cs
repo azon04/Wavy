@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SecondaryFire : MonoBehaviour {
-    public static SecondaryFire sf;
+    public static SecondaryFire secondFire;
 
 	// public
 	public int maxShots;
 	public GameObject LightWaveBullet;
 
+	[HideInInspector]
+	public int remainingShots;
+
 	//private
-	private int remainingShots;
+
 
 	// Use this for initialization
 	void Start ()
     {
-        sf = this;
+		secondFire = this;
         remainingShots = maxShots;
 	}
 
@@ -27,7 +30,7 @@ public class SecondaryFire : MonoBehaviour {
 
 	public void Fire(){
 		if (remainingShots > 0) {
-			GameObject.Instantiate (LightWaveBullet, transform.position + new Vector3(0.0f, 1.0f), transform.rotation);
+			GameObject.Instantiate (LightWaveBullet, transform.position + new Vector3(0.0f, 1.5f), transform.rotation);
 			remainingShots--;
 
 			if (remainingShots == 0) {
