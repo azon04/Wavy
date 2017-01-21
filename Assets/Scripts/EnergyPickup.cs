@@ -3,12 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
 public class EnergyPickup : Powerups
 {
-=======
-public class EnergyPickup : Powerups {
->>>>>>> refs/remotes/origin/master
     protected override void Awake()
     {
 
@@ -18,8 +14,4 @@ public class EnergyPickup : Powerups {
     {
 
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> refs/remotes/origin/master
