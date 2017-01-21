@@ -12,6 +12,7 @@ public class PlayerCharacter : MonoBehaviour {
     public float shotDistance = 100;
 
 	private SecondaryFire _secondaryFire;
+	private PrimaryFire _primaryFire;
     
     // Data
     int lifes = 5;
@@ -22,7 +23,7 @@ public class PlayerCharacter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         pc = this;
-		_secondaryFire = GetComponentInChildren<SecondaryFire> ();
+
 	}
 
 	// Update is called once per frame
@@ -30,13 +31,14 @@ public class PlayerCharacter : MonoBehaviour {
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
-			Shoot();
+			//Shoot();
+			_primaryFire.primaryFire.Fire();
 		}
 
 		if (Input.GetButtonDown("Fire2"))
 		{
-			_secondaryFire.Fire();
-			Debug.Log("secondary fire!");
+			_secondaryFire.secondFire.Fire ();
+			//Debug.Log("secondary fire!");
 		}
 	}
 

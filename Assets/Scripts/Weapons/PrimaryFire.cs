@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PrimaryFire : MonoBehaviour {
-	public static PrimaryFire primFire;
+	public static PrimaryFire primaryFire;
 	// public
 	public GameObject particleShot;
 
@@ -18,7 +18,7 @@ public class PrimaryFire : MonoBehaviour {
 	bool isHeated;
 
 	void Awake(){
-		primFire = this;
+		primaryFire = this;
 	}
 
 	// Use this for initialization
