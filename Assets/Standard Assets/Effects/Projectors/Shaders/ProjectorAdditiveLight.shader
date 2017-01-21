@@ -5,6 +5,7 @@ Shader "Projector/Additive" {
 	Properties {
 		_ShadowTex ("Cookie", 2D) = "gray" {}
 		_FalloffTex ("FallOff", 2D) = "white" {}
+		_Power("Power", float) = 1.0
 	}
 	Subshader {
 		Tags {"Queue"="Transparent"}
@@ -42,11 +43,12 @@ Shader "Projector/Additive" {
 			
 			sampler2D _ShadowTex;
 			sampler2D _FalloffTex;
+			float _Power;
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
 				fixed4 texS = tex2Dproj (_ShadowTex, UNITY_PROJ_COORD(i.uvShadow));
-				texS.a = 1.0-texS.a;
+				texS.a = (1.0-texS.a) * _Power;
 
 				fixed4 texF = tex2Dproj (_FalloffTex, UNITY_PROJ_COORD(i.uvFalloff));
 				fixed4 res = lerp(fixed4(1,1,1,0), texS, texF.a);

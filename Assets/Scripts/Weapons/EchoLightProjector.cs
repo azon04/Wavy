@@ -20,7 +20,6 @@ public class EchoLightProjector : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		this.GetComponent<Projector> ().orthographicSize += (rateOfSizeIncrease*Time.deltaTime);
-		this.GetComponent<Projector> ().material.color -= new Color((Time.deltaTime / timeAlive),(Time.deltaTime / timeAlive),(Time.deltaTime / timeAlive));
 	}
 
 	IEnumerator Destroy()
