@@ -10,6 +10,11 @@ public class PlayerCharacter : MonoBehaviour {
     public float shotDistance = 100;
 
 	private SecondaryFire _secondaryFire;
+    // Data
+    int lifes = 5;
+    public int maxLifes = 5;
+    float healthPoint = 100.0f;
+    public float maxHealthPoint = 100.0f; 
     
 	// Use this for initialization
 	void Start () {
@@ -36,5 +41,21 @@ public class PlayerCharacter : MonoBehaviour {
         GameObject newParticleShot = GameObject.Instantiate(particleShot, Camera.main.transform.position + Camera.main.transform.forward * 2, Quaternion.identity);
         ParticleShotScript particleShotScript = newParticleShot.GetComponent<ParticleShotScript>();
         particleShotScript.direction = Camera.main.transform.forward;
+    }
+
+    void ShootWave()
+    {
+        waveCount--;
+
+        // TODO Wave
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            // TODO Health life
+        }
     }
 }
