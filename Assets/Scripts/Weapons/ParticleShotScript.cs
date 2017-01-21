@@ -7,6 +7,7 @@ public class ParticleShotScript : MonoBehaviour {
     public Vector3 direction = new Vector3(0,0,1);
     public float force = 100;
     public float lifeTimeInSeconds = 5.0f;
+    public float damage = 10.0f;
 
     float gravitation = 9.8f;
     Rigidbody rigidBody;
@@ -14,7 +15,7 @@ public class ParticleShotScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rigidBody = GetComponent<Rigidbody>();
-
+        
         // Push in the first
         rigidBody.AddForce(direction * force, ForceMode.Impulse);
 	}
@@ -26,6 +27,28 @@ public class ParticleShotScript : MonoBehaviour {
         {
             DestroyObject(gameObject);
         }
+    }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        print("holy");
+        DestroyObject(gameObject);
+        print(collision.gameObject.name);
+        if(collision.gameObject.GetComponent<EnemyAI>() != null)
+        {
+            print("shit!!!!");
+            collision.gameObject.GetComponent<EnemyAI>().TakeDamage(damage);
+        }
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        DestroyObject(gameObject);
+        if (other.gameObject.GetComponent<EnemyAI>())
+        {
+            print("shit!!!!");
+            other.gameObject.GetComponent<EnemyAI>().TakeDamage(damage);
+        }
     }
 }

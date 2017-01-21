@@ -41,7 +41,7 @@ public class SeekerAI : EnemyAI
         if (curHealth <= 0)
         {
             curState = SeekerState.DEATH;//then play the death animation
-            Destroy(this, 1f);
+            Destroy(gameObject, 1f);
         }
 
 		if (curState == SeekerState.IDLE)
