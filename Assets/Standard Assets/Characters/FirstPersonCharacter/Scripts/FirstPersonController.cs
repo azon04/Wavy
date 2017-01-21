@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
@@ -10,6 +12,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        static public FirstPersonController fpc;
+        public bool Trapped = false;
+        //Vector3 TrappedPosition;
+
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -45,6 +51,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         // Use this for initialization
         private void Start()
         {
+            fpc = this;
             m_CharacterController = GetComponent<CharacterController>();
             m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
@@ -57,10 +64,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 
+        /*IEnumerator BeStill()
+        {
+            TrappedPosition = transform.position;
+            yield return new WaitForSeconds(3f);
+        }*/
 
         // Update is called once per frame
         private void Update()
         {
+           /* if (Trapped)
+            {
+                StartCoroutine(BeStill());
+            }*/
+
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -206,7 +223,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Read input
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
-
+        
             bool waswalking = m_IsWalking;
 
 #if !MOBILE_INPUT
@@ -223,6 +240,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Input.Normalize();
             }
+
+            if (Trapped) m_Input[1] = 0f;
 
             // handle speed change to give an fov kick
             // only if the player is going to a run, is running and the fovkick is to be used
