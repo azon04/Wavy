@@ -10,9 +10,6 @@ public class PlayerCharacter : MonoBehaviour {
     // For shooting purposes
     public GameObject particleShot;
     public float shotDistance = 100;
-
-	private SecondaryFire _secondaryFire;
-	private PrimaryFire _primaryFire;
     
     // Data
     int lifes = 5;
@@ -32,12 +29,12 @@ public class PlayerCharacter : MonoBehaviour {
 		if (Input.GetButtonDown("Fire1"))
 		{
 			//Shoot();
-			_primaryFire.primaryFire.Fire();
+			PrimaryFire.primaryFire.Fire();
 		}
 
 		if (Input.GetButtonDown("Fire2"))
 		{
-			_secondaryFire.secondFire.Fire ();
+			SecondaryFire.secondFire.Fire ();
 			//Debug.Log("secondary fire!");
 		}
 	}
