@@ -4,11 +4,8 @@ using UnityEngine;
 
 public abstract class Powerups : MonoBehaviour {
 
-	protected virtual void Awake()
-    {
+    protected abstract void Awake();
 
-    }
-
-    protected abstract void OnCollisionEnter(Collision Collide);
+    protected abstract void OnTriggerEnter(Collider Collide);
 
 }
