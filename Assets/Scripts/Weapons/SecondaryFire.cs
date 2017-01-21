@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SecondaryFire : MonoBehaviour {
+    public static SecondaryFire secondFire;
 
 	// public
 	public int maxShots;
 	public GameObject LightWaveBullet;
 
+	[HideInInspector]
+	public int remainingShots;
+
 	//private
-	private int remainingShots;
+
 
 	// Use this for initialization
-	void Start () {
-		remainingShots = maxShots;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void Start ()
+    {
+		secondFire = this;
+        remainingShots = maxShots;
 	}
 
 	public void addEnergy(){
