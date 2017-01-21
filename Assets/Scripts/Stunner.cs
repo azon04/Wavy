@@ -5,18 +5,15 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class Stunner : Powerups {
 
-    public GameObject player;
-
     protected override void Awake()
     {
     }
 
     IEnumerator Besiege()
     {
-        FirstPersonController fpc = player.GetComponent<FirstPersonController>();
-        fpc.Trapped = true;
+        FirstPersonController.fpc.Trapped = true;
         yield return new WaitForSeconds(2f);
-        fpc.Trapped = false;
+        FirstPersonController.fpc.Trapped = false;
     }
 
     protected override void OnTriggerEnter(Collider other)

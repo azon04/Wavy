@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameMode : MonoBehaviour {
 
@@ -11,9 +13,14 @@ public class GameMode : MonoBehaviour {
     bool win = false;
     bool lose = false;
 
+    public Text text;
+
 	// Use this for initialization
 	void Start () {
-		
+		if(text != null)
+        {
+            text.enabled = false;
+        }
 	}
 	
 	// Update is called once per frame
@@ -53,11 +60,16 @@ public class GameMode : MonoBehaviour {
     protected virtual void StartWin()
     {
         print("WIN");
+        text.enabled = true;
+        text.text = "WIN";
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<FirstPersonController>().enabled = false;
     }
 
     protected virtual void StartLose()
     {
-
+        text.enabled = true;
+        text.text = "LOSE";
     }
 
     void ChangeState(GameState _gameState)
