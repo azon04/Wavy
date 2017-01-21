@@ -9,8 +9,11 @@ public class SecondaryFire : MonoBehaviour {
 	public int maxShots;
 	public GameObject LightWaveBullet;
 
+	[HideInInspector]
+	public int remainingShots;
+
 	//private
-	private int remainingShots;
+
 
     protected void Awake()
     {
