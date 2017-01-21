@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SecondaryFire : MonoBehaviour {
-    public static SecondaryFire secFire;
+    public static SecondaryFire sf;
 
 	// public
 	public int maxShots;
@@ -15,19 +15,11 @@ public class SecondaryFire : MonoBehaviour {
 	//private
 
 
-    protected void Awake()
-    {
-        secFire = this;
-    }
-
 	// Use this for initialization
-	void Start () {
-		remainingShots = maxShots;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void Start ()
+    {
+        sf = this;
+        remainingShots = maxShots;
 	}
 
 	public void addEnergy(){

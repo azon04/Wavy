@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour {
 
+    public static PlayerCharacter pc;
+
     // For shooting purposes
     public GameObject particleShot;
     public float shotDistance = 100;
 
-	//private SecondaryFire _secondaryFire;
+	private SecondaryFire _secondaryFire;
+    
     // Data
     int lifes = 5;
     public int maxLifes = 5;
@@ -18,7 +21,8 @@ public class PlayerCharacter : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-		//_secondaryFire = GetComponentInChildren<SecondaryFire> ();
+        pc = this;
+		_secondaryFire = GetComponentInChildren<SecondaryFire> ();
 	}
 
 	// Update is called once per frame
@@ -26,14 +30,13 @@ public class PlayerCharacter : MonoBehaviour {
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
-			//Shoot();
-			PrimaryFire.primFire.Fire();
+			Shoot();
 		}
 
 		if (Input.GetButtonDown("Fire2"))
 		{
-			SecondaryFire.secFire.Fire ();
-			//Debug.Log("secondary fire!");
+			_secondaryFire.Fire();
+			Debug.Log("secondary fire!");
 		}
 	}
 
@@ -50,5 +53,11 @@ public class PlayerCharacter : MonoBehaviour {
         {
             // TODO Health life
         }
+    }
+
+    public void LoseLife()
+    {
+        lifes--;
+        //if(lifes == 0) Play Death Animation && Call Score UI
     }
 }
