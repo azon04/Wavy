@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : Powerups
+public class HoleInGround : Powerups
 {
     protected override void Awake()
     {
