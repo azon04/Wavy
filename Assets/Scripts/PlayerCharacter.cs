@@ -9,7 +9,7 @@ public class PlayerCharacter : MonoBehaviour {
     public GameObject particleShot;
     public float shotDistance = 100;
 
-	private SecondaryFire _secondaryFire;
+	//private SecondaryFire _secondaryFire;
     // Data
     int lifes = 5;
     public int maxLifes = 5;
@@ -18,7 +18,7 @@ public class PlayerCharacter : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-		_secondaryFire = GetComponentInChildren<SecondaryFire> ();
+		//_secondaryFire = GetComponentInChildren<SecondaryFire> ();
 	}
 
 	// Update is called once per frame
@@ -26,13 +26,14 @@ public class PlayerCharacter : MonoBehaviour {
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
-			Shoot();
+			//Shoot();
+			PrimaryFire.primFire.Fire();
 		}
 
 		if (Input.GetButtonDown("Fire2"))
 		{
-			_secondaryFire.Fire();
-			Debug.Log("secondary fire!");
+			SecondaryFire.secFire.Fire ();
+			//Debug.Log("secondary fire!");
 		}
 	}
 
