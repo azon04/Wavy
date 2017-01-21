@@ -43,11 +43,11 @@ public class PlayerCharacter : MonoBehaviour {
         particleShotScript.direction = Camera.main.transform.forward;
     }
 
-    void ShootWave()
+    void OnCollisionEnter(Collision collision)
     {
-        //waveCount--;
-
-        // TODO Wave
-
+        if(collision.gameObject.tag == "Enemy")
+        {
+            // TODO Health life
+        }
     }
 }

@@ -9,8 +9,9 @@ public class EnergyPickup : Powerups {
 
     }
 
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.tag == "Player") SecondaryFire.secFire.addEnergy();
+        Destroy(gameObject);
     }
 }
