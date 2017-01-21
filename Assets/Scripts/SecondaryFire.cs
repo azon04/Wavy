@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SecondaryFire : MonoBehaviour {
+    public static SecondaryFire secFire;
 
 	// public
 	public int maxShots;
@@ -10,6 +11,11 @@ public class SecondaryFire : MonoBehaviour {
 
 	//private
 	private int remainingShots;
+
+    protected void Awake()
+    {
+        secFire = this;
+    }
 
 	// Use this for initialization
 	void Start () {
