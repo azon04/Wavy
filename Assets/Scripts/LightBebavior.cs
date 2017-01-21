@@ -42,7 +42,7 @@ public class LightBebavior : MonoBehaviour
             //isMaxRange = true;
             if(duration < timer)
             {
-                duration += Time.deltaTime * timer;
+                duration += Time.deltaTime;
             }
             else
             {

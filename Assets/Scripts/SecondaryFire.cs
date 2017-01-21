@@ -35,7 +35,7 @@ public class SecondaryFire : MonoBehaviour {
 
 	public void Fire(){
 		if (remainingShots > 0) {
-			GameObject.Instantiate (LightWaveBullet, transform.position + new Vector3(0.0f, 1.0f), transform.rotation);
+			GameObject.Instantiate (LightWaveBullet, transform.position + new Vector3(0.0f, 1.5f), transform.rotation);
 			remainingShots--;
 
 			if (remainingShots == 0) {
