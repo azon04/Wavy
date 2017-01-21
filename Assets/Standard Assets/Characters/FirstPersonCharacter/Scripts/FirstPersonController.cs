@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Utility;
 using Random = UnityEngine.Random;
@@ -10,6 +12,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [RequireComponent(typeof (AudioSource))]
     public class FirstPersonController : MonoBehaviour
     {
+        public bool Trapped = false;
+        //Vector3 TrappedPosition;
+
         [SerializeField] private bool m_IsWalking;
         [SerializeField] private float m_WalkSpeed;
         [SerializeField] private float m_RunSpeed;
@@ -57,10 +62,20 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 
+        /*IEnumerator BeStill()
+        {
+            TrappedPosition = transform.position;
+            yield return new WaitForSeconds(3f);
+        }*/
 
         // Update is called once per frame
         private void Update()
         {
+           /* if (Trapped)
+            {
+                StartCoroutine(BeStill());
+            }*/
+
             RotateView();
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
@@ -206,6 +221,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // Read input
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
+
+            if (Trapped) vertical = 0f;
 
             bool waswalking = m_IsWalking;
 
