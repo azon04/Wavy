@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Powerups : MonoBehaviour {
+    // Use this for initialization
+    protected abstract void Awake();
 
-	protected virtual void Awake()
-    {
-
-    }
-
-    protected abstract void OnCollisionEnter(Collision Collide);
-
+    protected abstract void OnCollisionEnter(Collision collision);
 }
