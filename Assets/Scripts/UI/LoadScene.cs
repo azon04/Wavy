@@ -9,5 +9,6 @@ public class LoadScene : MonoBehaviour
     public void LoadLevel()
     {
         SceneManager.LoadScene(loadLevel);
+        Cursor.lockState = CursorLockMode.None;
     } 
 }
