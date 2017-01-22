@@ -28,8 +28,6 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         pc = this;
-        isRightHandTutorial = false;
-        isLeftHandTutorial = false;
     }
 
     // Update is called once per frame

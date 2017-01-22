@@ -32,24 +32,18 @@ public class ParticleShotScript : MonoBehaviour {
     void OnCollisionEnter(Collision collision)
     {
         //print("holy");
-        DestroyObject(gameObject);
-        print(collision.gameObject.name);
+        
+        //print(collision.gameObject.name);
         if(collision.gameObject.GetComponent<EnemyAI>() != null)
         {
             //print("shit!!!!");
-            collision.gameObject.GetComponent<EnemyAI>().TakeDamage(damage);
+            //collision.gameObject.GetComponent<EnemyAI>().TakeDamage(damage);
 			Debug.Log("zombie health = " + collision.gameObject.GetComponent<EnemyAI>().curHealth);
         }
+		if(collision.collider.tag != "Player")
+		DestroyObject(gameObject);
     }
 
 
-    void OnTriggerEnter(Collider other)
-    {
-        DestroyObject(gameObject);
-        if (other.gameObject.GetComponent<EnemyAI>())
-        {
-            print("shit!!!!");
-            other.gameObject.GetComponent<EnemyAI>().TakeDamage(damage);
-        }
-    }
+
 }
