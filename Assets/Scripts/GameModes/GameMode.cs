@@ -68,18 +68,11 @@ public class GameMode : MonoBehaviour {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FirstPersonController>().enabled = false;
     }
-    
+
     protected virtual void StartLose()
     {
-        //text.enabled = true;
-        //text.text = "LOSE";
-        if (GameUISystem.uiSystem)
-        {
-            GameUISystem.uiSystem.ChangeState(GameUISystem.UIState.LOSE);
-        }
-
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.GetComponent<FirstPersonController>().enabled = false;
+        text.enabled = true;
+        text.text = "LOSE";
     }
 
     void ChangeState(GameState _gameState)

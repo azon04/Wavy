@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameUISystem : MonoBehaviour {
 
@@ -53,38 +52,15 @@ public class GameUISystem : MonoBehaviour {
             case UIState.WIN:
                 if (WinUIObject) WinUIObject.SetActive(true);
                 currentUI = WinUIObject;
-                Fade(1);
                 break;
             case UIState.LOSE:
                 if (LoseUIObject) LoseUIObject.SetActive(true);
                 currentUI = LoseUIObject;
-                Fade(0);
                 break;
             case UIState.PAUSE:
                 if (PauseUIObject) PauseUIObject.SetActive(true);
                 currentUI = PauseUIObject;
                 break;
-        }
-    }
-
-    void Fade(int isWin)
-    {
-        Component[] comps;
-        if (isWin == 1)
-        {
-            comps = WinUIObject.GetComponentsInChildren<Component>();
-        }
-        else
-        {
-            comps = LoseUIObject.GetComponentsInChildren<Component>();
-        }
-
-        foreach (Component c in comps)
-        {
-            if (c is Graphic)
-            {
-                (c as Graphic).CrossFadeAlpha(0, 1, true);
-            }
         }
     }
 }

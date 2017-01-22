@@ -94,4 +94,10 @@ public class Animal_spirit : Powerups
 
     }
 
+	void OnCollisionEnter(Collision other){
+		if (other.collider.tag == "Player") {
+			active = true;
+		}
+	}
+
 }

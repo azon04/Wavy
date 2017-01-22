@@ -153,4 +153,14 @@ public class PlayerCharacter : MonoBehaviour
         return healthPoint;
     }
 
+	void OnCollisionEnter(Collider other){
+		if(other.GetComponent<Collider>().tag != "FuckingFloor")
+		print (other.gameObject.name);
+	}
+
+	void OnTriggerEnter(Collider other){
+		if(other.GetComponent<Collider>().tag != "FuckingFloor")
+			print (other.gameObject.name);
+	}
+
 }
