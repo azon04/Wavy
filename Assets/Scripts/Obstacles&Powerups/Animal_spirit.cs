@@ -45,7 +45,8 @@ public class Animal_spirit : Powerups
 
                 if (Math.Abs(path1[pathcnt1].position.x - this.transform.position.x) > 0.1 || Math.Abs(path1[pathcnt1].position.z - this.transform.position.z) > 0.1)
                 {
-                    this.transform.LookAt(path1[pathcnt1]);
+					this.transform.LookAt(path1[pathcnt1]);
+					this.transform.Rotate (new Vector3(0.0f, -90.0f, 0.0f));
                     this.transform.position += dir * speed;
                 }
                 else
@@ -61,7 +62,8 @@ public class Animal_spirit : Powerups
                 Vector3 dir = Vector3.Normalize(path2[pathcnt2].position - this.transform.position);
                 if (Math.Abs(path2[pathcnt2].position.x - this.transform.position.x) > 0.1 || Math.Abs(path2[pathcnt2].position.z - this.transform.position.z) > 0.1)
                 {
-                    this.transform.LookAt(path2[pathcnt2]);
+					this.transform.LookAt(path2[pathcnt2]);
+					this.transform.Rotate (new Vector3(0.0f, -90.0f, 0.0f));
                     this.transform.position += dir * speed;
                     
                 }

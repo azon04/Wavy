@@ -31,13 +31,14 @@ public class ParticleShotScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        print("holy");
+        //print("holy");
         DestroyObject(gameObject);
         print(collision.gameObject.name);
         if(collision.gameObject.GetComponent<EnemyAI>() != null)
         {
-            print("shit!!!!");
+            //print("shit!!!!");
             collision.gameObject.GetComponent<EnemyAI>().TakeDamage(damage);
+			Debug.Log("zombie health = " + collision.gameObject.GetComponent<EnemyAI>().curHealth);
         }
     }
 
