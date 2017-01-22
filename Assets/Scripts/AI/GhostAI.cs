@@ -107,6 +107,7 @@ public class GhostAI : EnemyAI {
 
     void OnTriggerEnter(Collider other)
     {
+        print(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
             curState = SeekerState.ATTACK;//then play the attack animation
