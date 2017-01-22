@@ -51,10 +51,14 @@ public class GameUISystem : MonoBehaviour {
                 currentUI = HUDObject;
                 break;
 			case UIState.WIN:
-				if (WinUIObject)
+				if (WinUIObject) {
+				Debug.Log ("111");
 					WinUIObject.SetActive (true);
-				currentUI = WinUIObject;
-			StartCoroutine ("LoadMainMenu");
+				Debug.Log ("222");
+					currentUI = WinUIObject;
+				Debug.Log ("333");
+					StartCoroutine ("LoadMainMenu");
+				}
                 break;
             case UIState.LOSE:
                 if (LoseUIObject) LoseUIObject.SetActive(true);
@@ -69,8 +73,10 @@ public class GameUISystem : MonoBehaviour {
     }
 
 	IEnumerator LoadMainMenu(){
-		Cursor.visible = true;
-		yield return new WaitForSeconds (3.0f);
+		//Cursor.visible = true;
+		Debug.Log ("444");
+		yield return new WaitForSeconds (2.5f);
+		Debug.Log ("555");
 		SceneManager.LoadScene (0);
 	}
 }

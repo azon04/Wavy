@@ -70,7 +70,7 @@ public class GameMode : MonoBehaviour {
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FirstPersonController>().enabled = false;
-        Time.timeScale = 0.0f;
+       // Time.timeScale = 0.0f;
     }
 
     protected virtual void StartLose()
