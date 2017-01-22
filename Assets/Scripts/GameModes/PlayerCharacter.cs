@@ -48,15 +48,10 @@ public class PlayerCharacter : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             //Shoot();
-<<<<<<< HEAD
-            PrimaryFire.primaryFire.Fire();
-            LoseLife();
-=======
             if (isLeftHandTutorial || ((!isRightHandTutorial) && (!isLeftHandTutorial)))
             {
                 PrimaryFire.primaryFire.Fire();
             }
->>>>>>> 49e75fc9b1c6007212ef0555fc2e96ff822257a1
         }
 
 
@@ -68,7 +63,7 @@ public class PlayerCharacter : MonoBehaviour
                 //Debug.Log("secondary fire!");
             }
         }
-<<<<<<< HEAD
+
         if (isDead)
         {
             if(deathAnimTime>0)
@@ -77,9 +72,7 @@ public class PlayerCharacter : MonoBehaviour
                 PlayDeathAnimation();
             }
         }
-=======
 
->>>>>>> 49e75fc9b1c6007212ef0555fc2e96ff822257a1
     }
 
     void Shoot()
@@ -134,16 +127,15 @@ public class PlayerCharacter : MonoBehaviour
         if (healthPoint <= 0) LoseLife();
     }
 
-<<<<<<< HEAD
+
     void PlayDeathAnimation()
     {
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(-90f, transform.rotation.y,transform.rotation.z), (1 - deathAnimTime/tempDeathAnimDuration));
     }
 
-=======
     public float getCurrentHealth()
     {
         return healthPoint;
     }
->>>>>>> 49e75fc9b1c6007212ef0555fc2e96ff822257a1
+
 }
