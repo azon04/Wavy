@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    public Image hitImage;
+    public GameObject hitImage;
     float flashSpeed = 5f;
     Color flashColor = new Color(1f, 0f, 0f, 0.1f);
     bool isDamaged = false;
@@ -30,6 +30,8 @@ public class PlayerCharacter : MonoBehaviour
     float deathAnimTime = 0.0f;
     bool isDead = false;
     
+	bool coroutinRunning;
+
     // Use this for initialization
     void Start()
     {
@@ -40,15 +42,6 @@ public class PlayerCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDamaged)
-        {
-            hitImage.color = flashColor;
-        }
-        else
-        {
-            hitImage.color = Color.Lerp(hitImage.color, Color.clear, flashSpeed * Time.deltaTime);
-        }
-        isDamaged = false;
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -62,7 +55,6 @@ public class PlayerCharacter : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            //Shoot();
             if (isLeftHandTutorial || ((!isRightHandTutorial) && (!isLeftHandTutorial)))
             {
                 PrimaryFire.primaryFire.Fire();
@@ -88,13 +80,6 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
 
-    }
-
-    void Shoot()
-    {
-        GameObject newParticleShot = GameObject.Instantiate(particleShot, Camera.main.transform.position + Camera.main.transform.forward * 2, Quaternion.identity);
-        ParticleShotScript particleShotScript = newParticleShot.GetComponent<ParticleShotScript>();
-        particleShotScript.direction = Camera.main.transform.forward;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -137,7 +122,9 @@ public class PlayerCharacter : MonoBehaviour
 
     public void LoseHealthPoint(float healthLoss)
     {
-        isDamaged = true;
+        //isDamaged = true;
+		if(!coroutinRunning)
+			StartCoroutine("showDamageScreen");
         healthPoint -= healthLoss;
         if (healthPoint <= 0) LoseLife();
     }
@@ -153,14 +140,12 @@ public class PlayerCharacter : MonoBehaviour
         return healthPoint;
     }
 
-	void OnCollisionEnter(Collider other){
-		if(other.GetComponent<Collider>().tag != "FuckingFloor")
-		print (other.gameObject.name);
-	}
-
-	void OnTriggerEnter(Collider other){
-		if(other.GetComponent<Collider>().tag != "FuckingFloor")
-			print (other.gameObject.name);
+	IEnumerator showDamageScreen(){
+		coroutinRunning = true;
+		hitImage.SetActive(true);
+		yield return new WaitForSeconds(1.0f);
+		hitImage.SetActive (false);
+		coroutinRunning = false;
 	}
 
 }
