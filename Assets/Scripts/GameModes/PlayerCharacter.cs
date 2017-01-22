@@ -15,16 +15,20 @@ public class PlayerCharacter : MonoBehaviour
     public float shotDistance = 100;
 
     // Data
-    int lifes = 5;
+    public int lifes = 5;
     public int maxLifes = 5;
 	public float healthPoint = 100.0f;
     public float maxHealthPoint = 100.0f;
 
+    public float tempDeathAnimDuration;
+    float deathAnimTime = 0.0f;
+    bool isDead = false;
+    
     // Use this for initialization
     void Start()
     {
         pc = this;
-        isRightHandTutorial = true;
+        isRightHandTutorial = false;
         isLeftHandTutorial = false;
     }
 
@@ -58,6 +62,15 @@ public class PlayerCharacter : MonoBehaviour
             {
                 SecondaryFire.secondFire.Fire();
                 //Debug.Log("secondary fire!");
+            }
+        }
+
+        if (isDead)
+        {
+            if(deathAnimTime>0)
+            {
+                deathAnimTime -= Time.deltaTime;
+                PlayDeathAnimation();
             }
         }
 
@@ -100,6 +113,13 @@ public class PlayerCharacter : MonoBehaviour
     {
         lifes--;
         //if(lifes == 0) Play Death Animation && Call Score UI
+        if(lifes <= 0)
+        {
+            isDead = true;
+            GetComponent<CharacterController>().enabled = false;
+            deathAnimTime = tempDeathAnimDuration;
+
+        }
     }
 
     public void LoseHealthPoint(float healthLoss)
@@ -108,8 +128,15 @@ public class PlayerCharacter : MonoBehaviour
         if (healthPoint <= 0) LoseLife();
     }
 
+
+    void PlayDeathAnimation()
+    {
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(-90f, transform.rotation.y,transform.rotation.z), (1 - deathAnimTime/tempDeathAnimDuration));
+    }
+
     public float getCurrentHealth()
     {
         return healthPoint;
     }
+
 }
