@@ -6,7 +6,8 @@ using UnityEngine;
 public class PlayerCharacter : MonoBehaviour
 {
     public static PlayerCharacter pc;
-
+    public bool isLeftHandTutorial;
+    public bool isRightHandTutorial;
     // For shooting purposes
     public GameObject particleShot;
     public float shotDistance = 100;
@@ -21,23 +22,33 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         pc = this;
-
+        isRightHandTutorial = true;
+        isLeftHandTutorial = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetButtonDown("Fire1"))
         {
             //Shoot();
-            PrimaryFire.primaryFire.Fire();
+            if (isLeftHandTutorial || ((!isRightHandTutorial) && (!isLeftHandTutorial)))
+            {
+                PrimaryFire.primaryFire.Fire();
+            }
         }
+
 
         if (Input.GetButtonDown("Fire2"))
         {
-            SecondaryFire.secondFire.Fire();
-            //Debug.Log("secondary fire!");
+            if (((isRightHandTutorial) && (!isLeftHandTutorial)) || ((!isRightHandTutorial) && (!isLeftHandTutorial)))
+            {
+                SecondaryFire.secondFire.Fire();
+                //Debug.Log("secondary fire!");
+            }
         }
+        
     }
 
     void Shoot()
