@@ -56,7 +56,7 @@ public class GhostAI : EnemyAI {
                 Attack();
             else
             {
-                agent.destination = playerPosition;
+                //agent.destination = playerPosition;
                 if (particleshots.Length > 0)
                 {
                     curState = SeekerState.IDLE;
@@ -110,4 +110,11 @@ public class GhostAI : EnemyAI {
             curState = SeekerState.ATTACK;//then play the attack animation
         }
     }
+
+	void OnTriggerExit(Collider other){
+		if (other.gameObject.tag == "Player")
+		{
+			curState = SeekerState.IDLE;//then play the attack animation
+		}
+	}
 }
