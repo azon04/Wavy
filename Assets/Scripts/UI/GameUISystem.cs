@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameUISystem : MonoBehaviour {
 
@@ -50,15 +50,16 @@ public class GameUISystem : MonoBehaviour {
                 if (HUDObject) HUDObject.SetActive(true);
                 currentUI = HUDObject;
                 break;
-            case UIState.WIN:
-                if (WinUIObject) WinUIObject.SetActive(true);
-                currentUI = WinUIObject;
-                Fade(1);
+			case UIState.WIN:
+				if (WinUIObject)
+					WinUIObject.SetActive (true);
+				currentUI = WinUIObject;
+			StartCoroutine ("LoadMainMenu");
                 break;
             case UIState.LOSE:
                 if (LoseUIObject) LoseUIObject.SetActive(true);
                 currentUI = LoseUIObject;
-                Fade(0);
+			StartCoroutine ("LoadMainMenu");
                 break;
             case UIState.PAUSE:
                 if (PauseUIObject) PauseUIObject.SetActive(true);
@@ -67,24 +68,9 @@ public class GameUISystem : MonoBehaviour {
         }
     }
 
-    void Fade(int isWin)
-    {
-        Component[] comps;
-        if (isWin == 1)
-        {
-            comps = WinUIObject.GetComponentsInChildren<Component>();
-        }
-        else
-        {
-            comps = LoseUIObject.GetComponentsInChildren<Component>();
-        }
-
-        foreach (Component c in comps)
-        {
-            if (c is Graphic)
-            {
-                (c as Graphic).CrossFadeAlpha(0, 1, true);
-            }
-        }
-    }
+	IEnumerator LoadMainMenu(){
+		Cursor.visible = true;
+		yield return new WaitForSeconds (3.0f);
+		SceneManager.LoadScene (0);
+	}
 }

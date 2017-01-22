@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    public GameObject hitImage;
+    float flashSpeed = 5f;
+    Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    bool isDamaged = false;
+
     public static PlayerCharacter pc;
     public bool isLeftHandTutorial;
     public bool isRightHandTutorial;
@@ -24,29 +30,31 @@ public class PlayerCharacter : MonoBehaviour
     float deathAnimTime = 0.0f;
     bool isDead = false;
     
+	bool coroutinRunning;
+
     // Use this for initialization
     void Start()
     {
+        //hitScreen = GetComponent<Animation>();
         pc = this;
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (Time.timeScale < 1.0f)
                 UnPauseGame();
             else
                 PauseGame();
-
         }
 
         if (Time.timeScale == 0.0f) return;
 
         if (Input.GetButtonDown("Fire1"))
         {
-            //Shoot();
             if (isLeftHandTutorial || ((!isRightHandTutorial) && (!isLeftHandTutorial)))
             {
                 PrimaryFire.primaryFire.Fire();
@@ -65,6 +73,7 @@ public class PlayerCharacter : MonoBehaviour
 
         if (isDead)
         {
+            //GameMode.gm.ChangeState(GameMode.GameState.LOSE);
             if(deathAnimTime>0)
             {
                 deathAnimTime -= Time.deltaTime;
@@ -72,13 +81,6 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
 
-    }
-
-    void Shoot()
-    {
-        GameObject newParticleShot = GameObject.Instantiate(particleShot, Camera.main.transform.position + Camera.main.transform.forward * 2, Quaternion.identity);
-        ParticleShotScript particleShotScript = newParticleShot.GetComponent<ParticleShotScript>();
-        particleShotScript.direction = Camera.main.transform.forward;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -107,6 +109,12 @@ public class PlayerCharacter : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void Dead()
+    {
+        isDead = true;
+        GameMode.gm.ChangeState(GameMode.GameState.LOSE);
+    }
+
     public void LoseLife()
     {
         lifes--;
@@ -116,14 +124,16 @@ public class PlayerCharacter : MonoBehaviour
             isDead = true;
             GetComponent<CharacterController>().enabled = false;
             deathAnimTime = tempDeathAnimDuration;
-
         }
     }
 
     public void LoseHealthPoint(float healthLoss)
     {
+        //isDamaged = true;
+		if(!coroutinRunning)
+			StartCoroutine("showDamageScreen");
         healthPoint -= healthLoss;
-        if (healthPoint <= 0) LoseLife();
+        if (healthPoint <= 0) Dead(); //LoseLife();
     }
 
 
@@ -136,5 +146,13 @@ public class PlayerCharacter : MonoBehaviour
     {
         return healthPoint;
     }
+
+	IEnumerator showDamageScreen(){
+		coroutinRunning = true;
+		hitImage.SetActive(true);
+		yield return new WaitForSeconds(1.0f);
+		hitImage.SetActive (false);
+		coroutinRunning = false;
+	}
 
 }
