@@ -38,7 +38,7 @@ public class PrimaryFire : MonoBehaviour {
 
 	public void Fire(){
 		if (currentHeat < maxHeat && !isHeated) {
-			GameObject newParticleShot = GameObject.Instantiate (particleShot, Camera.main.transform.position + Camera.main.transform.forward * 2, Quaternion.identity);
+			GameObject newParticleShot = GameObject.Instantiate (particleShot, Camera.main.transform.position + Camera.main.transform.forward * 1.0f, Quaternion.identity);
 			ParticleShotScript particleShotScript = newParticleShot.GetComponent<ParticleShotScript> ();
 			particleShotScript.direction = Camera.main.transform.forward;
 
