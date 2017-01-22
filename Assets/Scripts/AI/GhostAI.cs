@@ -63,17 +63,21 @@ public class GhostAI : EnemyAI {
         GameObject[] particleshots = GameObject.FindGameObjectsWithTag("ParticleShot");
         if (Input.GetButtonDown("Fire2"))
         {
-
-            if (Mathf.Abs(agent.destination.x - playerPosition.x) > 0.1 && Mathf.Abs(agent.destination.z - playerPosition.z) > 0.1)
+            if (playerDist <= proximityRadius)
             {
-                following = true;
+                //curState = SeekerState.ATTACK;
+
+                if (Mathf.Abs(this.gameObject.transform.position.x - playerPosition.x) > 0.1 && Mathf.Abs(this.gameObject.transform.position.x - playerPosition.z) > 0.1)
+                {
+                    following = true;
+
+                }
+                else
+                    following = false;
                 agent.destination = playerPosition;
-                
+                return;
             }
-            else
-                following = false;
-            
-            return;
+           
         }
         else if (particleshots.Length>0)
         {
