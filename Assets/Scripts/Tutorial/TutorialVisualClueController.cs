@@ -25,6 +25,11 @@ public class TutorialVisualClueController : MonoBehaviour {
         isShowingRightHand = true;
         fpc = GameObject.Find("FPSController").GetComponent<FirstPersonController>();
         pc = GameObject.Find("FPSController").GetComponent<PlayerCharacter>();
+        if (fpc.isTutorial)
+        {
+            pc.isRightHandTutorial = false;
+            pc.isLeftHandTutorial = false;
+        }
         StartCoroutine(playRightHandAnimation());
         isDelay = false;
 	}

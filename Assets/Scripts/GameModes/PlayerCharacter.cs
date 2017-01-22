@@ -22,7 +22,7 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         pc = this;
-        isRightHandTutorial = true;
+        isRightHandTutorial = false;
         isLeftHandTutorial = false;
     }
 
