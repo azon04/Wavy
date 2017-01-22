@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
 
     public void TakeDamage(float damageValue)
     {
+        print("OH FUCK!!!!!!!");
         curHealth -= damageValue;
     }
 

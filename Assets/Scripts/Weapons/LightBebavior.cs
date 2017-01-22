@@ -38,6 +38,7 @@ public class LightBebavior : MonoBehaviour
         {
 			LightRange += Time.deltaTime * growing_speed * maxRange;
             lt.range = LightRange;
+			this.GetComponent<SphereCollider> ().radius = lt.range;
         }
         else
         {
@@ -51,7 +52,6 @@ public class LightBebavior : MonoBehaviour
 				lt.intensity -= Time.deltaTime * intensity_fading_speed;
             }
         }
-
     }
     
 }

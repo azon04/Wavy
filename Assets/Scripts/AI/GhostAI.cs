@@ -1,19 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.AI;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class SeekerAI : EnemyAI
-{
+public class GhostAI : EnemyAI {
+
+    // Use this for initialization
     public enum SeekerState
     {
-        IDLE, 
-        ATTACK, 
+        IDLE,
+        ATTACK,
         DEATH
     };
 
     public SeekerState curState;
-
+    bool following = false;
     float attackDamage = 20f;
     float proximityRadius = 15f;
     float defaultRadius = 5f; //Assign value
@@ -25,15 +26,15 @@ public class SeekerAI : EnemyAI
     GameObject player;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         player = GameObject.FindWithTag("Player");
         curState = SeekerState.IDLE;
         agent = GetComponent<NavMeshAgent>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         playerPosition = player.transform.position;
         playerDist = (playerPosition - transform.position).magnitude;
@@ -41,10 +42,10 @@ public class SeekerAI : EnemyAI
         if (curHealth <= 0)
         {
             curState = SeekerState.DEATH;//then play the death animation
-            Destroy(gameObject, 1f);
+            Destroy(this, 1f);
         }
 
-		if (curState == SeekerState.IDLE)
+        if (curState == SeekerState.IDLE)
         {
             Wander();
         }
@@ -52,20 +53,43 @@ public class SeekerAI : EnemyAI
         {
             Attack();
         }*/
-        
-	}
+
+    }
 
     void Wander()
     {
         //put navmesh to go from left to right
         //find distance between Player and enemy
-        if (playerDist <= proximityRadius)
+        GameObject[] particleshots = GameObject.FindGameObjectsWithTag("ParticleShot");
+        if (Input.GetButtonDown("Fire2"))
+        {
+            if (playerDist <= proximityRadius)
+            {
+                //curState = SeekerState.ATTACK;
+
+                if (Mathf.Abs(this.gameObject.transform.position.x - playerPosition.x) > 0.1 && Mathf.Abs(this.gameObject.transform.position.x - playerPosition.z) > 0.1)
+                {
+                    following = true;
+
+                }
+                else
+                    following = false;
+                agent.destination = playerPosition;
+                return;
+            }
+           
+        }
+        else if (particleshots.Length>0)
         {
             //curState = SeekerState.ATTACK;
-            agent.destination = playerPosition;
+            following = false;
+            agent.destination = particleshots[particleshots.Length -1].transform.position;
+           
+           // following = true;
             return;
         }
-        else {
+        else if(following == false)
+        {
             Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * defaultRadius;
             randomDirection += transform.position;
 
