@@ -20,6 +20,8 @@ public class FadeAway : MonoBehaviour
 
     IEnumerator FadeTo(float aValue, float aTime)
     {
+        CanvasRenderer[] childrenCanvasRenderer = GetComponentsInChildren<CanvasRenderer>();
+        
         float alpha = transform.GetComponent<Renderer>().material.color.a;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
         {
