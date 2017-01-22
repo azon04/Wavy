@@ -41,7 +41,7 @@ public class ParticlesSpawner : MonoBehaviour {
         while(isSpawn)
         {
             yield return new WaitForSeconds(Time);
-            SpawnParticle(0, transform.position + offsetPos);
+            SpawnParticle(Random.Range(0, ParticlePrefabs.Count), transform.position + offsetPos);
         }
     }
     void SpawnParticle(int index, Vector3 worldLocation)
