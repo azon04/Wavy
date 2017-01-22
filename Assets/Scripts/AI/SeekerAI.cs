@@ -78,11 +78,13 @@ public class SeekerAI : EnemyAI
     IEnumerator Damage()
     {
         PlayerCharacter.pc.LoseHealthPoint(attackDamage * Time.deltaTime);
-        yield return null;
+        yield return new WaitForEndOfFrame();
     }
 
     void OnTriggerEnter(Collider other)
     {
+        print("Trigger FUCK!!");
+        print(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
             curState = SeekerState.ATTACK;//then play the attack animation
@@ -92,6 +94,8 @@ public class SeekerAI : EnemyAI
 
     void OnCollisionEnter(Collision other)
     {
+        print("Collider FUCK!!");
+        print(other.gameObject.tag);
         if (other.gameObject.tag == "Particle")
         {
             TakeDamage(5.0f);//Or other.gameObject.particleDamage

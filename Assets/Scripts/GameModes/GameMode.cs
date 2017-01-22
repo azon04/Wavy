@@ -60,8 +60,11 @@ public class GameMode : MonoBehaviour {
     protected virtual void StartWin()
     {
         print("WIN");
-        text.enabled = true;
-        text.text = "WIN";
+        if (GameUISystem.uiSystem)
+        {
+            GameUISystem.uiSystem.ChangeState(GameUISystem.UIState.WIN);
+        }
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FirstPersonController>().enabled = false;
     }
