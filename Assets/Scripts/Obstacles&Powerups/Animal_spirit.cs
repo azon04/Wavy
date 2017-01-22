@@ -9,9 +9,11 @@ public class Animal_spirit : Powerups
 {
 
     bool active;
-    int pathcnt = 0;
-// GameObject Path = new GameObject();
+    int pathcnt1 = 0;
+    int pathcnt2 = 0;
+    // GameObject Path = new GameObject();
     Transform[] path1 = new Transform[4];
+    Transform[] path2 = new Transform[4];
     int timer = 0;
     // Use this for initialization
     void Start()
@@ -21,8 +23,12 @@ public class Animal_spirit : Powerups
         for (int i = 0; i < GameObject.FindGameObjectsWithTag("Path1")[0].transform.childCount; i++)
         {
             path1[i] = GameObject.FindGameObjectsWithTag("Path1")[0].transform.GetChild(i).transform;
-           // path1[i].GetChild(i).gameObject.SetActive(false);
            
+           
+        }
+        for (int i=0;i< GameObject.FindGameObjectsWithTag("Path2")[0].transform.childCount; i++)
+        {
+            path2[i] = GameObject.FindGameObjectsWithTag("Path2")[0].transform.GetChild(i).transform;
         }
     }
 
@@ -31,29 +37,44 @@ public class Animal_spirit : Powerups
     {
         if (active)
         {
-
             float speed = 0.1f;
-            Vector3 dir = Vector3.Normalize(path1[pathcnt].position - this.transform.position);
-            float a = Math.Abs(path1[pathcnt].position.z - this.transform.position.z);
-            if (Math.Abs(path1[pathcnt].position.x - this.transform.position.x) > 0.1 || Math.Abs(path1[pathcnt].position.z - this.transform.position.z) > 0.1)
+            if (this.gameObject.tag == "AnimalSpirit1")
             {
-                this.transform.position += dir * speed;
+                
+                Vector3 dir = Vector3.Normalize(path1[pathcnt1].position - this.transform.position);
+
+                if (Math.Abs(path1[pathcnt1].position.x - this.transform.position.x) > 0.1 || Math.Abs(path1[pathcnt1].position.z - this.transform.position.z) > 0.1)
+                {
+					this.transform.LookAt(path1[pathcnt1]);
+					this.transform.Rotate (new Vector3(0.0f, -90.0f, 0.0f));
+                    this.transform.position += dir * speed;
+                }
+                else
+                {
+
+                    if (pathcnt1 < GameObject.FindGameObjectsWithTag("Path1")[0].transform.childCount - 1)
+                        pathcnt1++;
+
+                }
             }
             else
             {
-                //timer++;
-                //if (timer < 500)
-                //{
-                //    path1[pathcnt].GetChild(0).gameObject.SetActive(true);
-                //}
-                //else
-                //{
-                //    path1[0].GetChild(0).gameObject.SetActive(false);
-                //    path1[1].GetChild(0).gameObject.SetActive(false);
-                //}
-                if (pathcnt < path1.Length - 1)
-                    pathcnt++;
-                
+                Vector3 dir = Vector3.Normalize(path2[pathcnt2].position - this.transform.position);
+                if (Math.Abs(path2[pathcnt2].position.x - this.transform.position.x) > 0.1 || Math.Abs(path2[pathcnt2].position.z - this.transform.position.z) > 0.1)
+                {
+					this.transform.LookAt(path2[pathcnt2]);
+					this.transform.Rotate (new Vector3(0.0f, -90.0f, 0.0f));
+                    this.transform.position += dir * speed;
+                    
+                }
+
+                else
+                {
+
+                    if (pathcnt2 < GameObject.FindGameObjectsWithTag("Path2")[0].transform.childCount - 1)
+                        pathcnt2++;
+
+                }
             }
         }
     }
@@ -65,7 +86,7 @@ public class Animal_spirit : Powerups
 
     protected override void OnTriggerEnter(Collider Collide)
     {
-        //float speed = 0.001f;
+        
         if (Collide.gameObject.tag == "Player")
         {
             active = true;

@@ -28,3 +28,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Models/Materials/No Name.mat
+Assets/Models/Materials/No Name.mat.meta

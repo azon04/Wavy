@@ -18,11 +18,15 @@ public class SeekerAI : EnemyAI
     float proximityRadius = 15f;
     float defaultRadius = 5f; //Assign value
     float lightRadius; //Assign value
+
+	float AttackRange = 2.0f;
     float playerDist;
 
     Vector3 playerPosition;
     NavMeshAgent agent;
     GameObject player;
+
+	int frameCount = 0;
 
     // Use this for initialization
     void Start ()
@@ -38,6 +42,12 @@ public class SeekerAI : EnemyAI
         playerPosition = player.transform.position;
         playerDist = (playerPosition - transform.position).magnitude;
 
+		if (playerDist <= AttackRange) {
+			curState = SeekerState.ATTACK;
+		} else {
+			curState = SeekerState.IDLE;
+		}
+
         if (curHealth <= 0)
         {
             curState = SeekerState.DEATH;//then play the death animation
@@ -48,10 +58,12 @@ public class SeekerAI : EnemyAI
         {
             Wander();
         }
-        /*if (curState == SeekerState.ATTACK)
-        {
-            Attack();
-        }*/
+        
+		else if(curState == SeekerState.ATTACK){
+			if (PlayerCharacter.pc.healthPoint > 0) {
+				Attack ();
+			}
+		}
         
 	}
 
@@ -78,27 +90,31 @@ public class SeekerAI : EnemyAI
     IEnumerator Damage()
     {
         PlayerCharacter.pc.LoseHealthPoint(attackDamage * Time.deltaTime);
-        yield return new WaitForEndOfFrame();
+		Debug.Log ("player health = " + PlayerCharacter.pc.healthPoint);
+		yield return new WaitForSeconds (0.25f);
     }
+
+	void Attack(){
+		
+		PlayerCharacter.pc.LoseHealthPoint(attackDamage * Time.deltaTime);
+		//Debug.Log ("player health = " + PlayerCharacter.pc.healthPoint);
+	}
 
     void OnTriggerEnter(Collider other)
     {
-        print("Trigger FUCK!!");
-        print(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
             curState = SeekerState.ATTACK;//then play the attack animation
-            StartCoroutine(Damage());
+           // StartCoroutine(Damage());
         }
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        print("Collider FUCK!!");
-        print(other.gameObject.tag);
-        if (other.gameObject.tag == "Particle")
-        {
-            TakeDamage(5.0f);//Or other.gameObject.particleDamage
-        }
-    }
+    //void OnCollisionEnter(Collision other)
+    //{
+	//	if (other.gameObject.tag == "ParticleShot")
+    //    {
+     //       TakeDamage(5.0f);//Or other.gameObject.particleDamage
+	//		Debug.Log("zombie health = " + curHealth);
+     //   }
+    //}
 }
