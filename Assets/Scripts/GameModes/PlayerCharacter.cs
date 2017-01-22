@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    public Image hitImage;
+    float flashSpeed = 5f;
+    Color flashColor = new Color(1f, 0f, 0f, 0.1f);
+    bool isDamaged = false;
+
     public static PlayerCharacter pc;
     public bool isLeftHandTutorial;
     public bool isRightHandTutorial;
@@ -27,19 +33,29 @@ public class PlayerCharacter : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        //hitScreen = GetComponent<Animation>();
         pc = this;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDamaged)
+        {
+            hitImage.color = flashColor;
+        }
+        else
+        {
+            hitImage.color = Color.Lerp(hitImage.color, Color.clear, flashSpeed * Time.deltaTime);
+        }
+        isDamaged = false;
+
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (Time.timeScale < 1.0f)
                 UnPauseGame();
             else
                 PauseGame();
-
         }
 
         if (Time.timeScale == 0.0f) return;
@@ -116,12 +132,12 @@ public class PlayerCharacter : MonoBehaviour
             isDead = true;
             GetComponent<CharacterController>().enabled = false;
             deathAnimTime = tempDeathAnimDuration;
-
         }
     }
 
     public void LoseHealthPoint(float healthLoss)
     {
+        isDamaged = true;
         healthPoint -= healthLoss;
         if (healthPoint <= 0) LoseLife();
     }
@@ -136,5 +152,15 @@ public class PlayerCharacter : MonoBehaviour
     {
         return healthPoint;
     }
+
+	void OnCollisionEnter(Collider other){
+		if(other.GetComponent<Collider>().tag != "FuckingFloor")
+		print (other.gameObject.name);
+	}
+
+	void OnTriggerEnter(Collider other){
+		if(other.GetComponent<Collider>().tag != "FuckingFloor")
+			print (other.gameObject.name);
+	}
 
 }
