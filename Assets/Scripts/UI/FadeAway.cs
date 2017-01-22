@@ -5,27 +5,25 @@ using UnityEngine.UI;
 
 public class FadeAway : MonoBehaviour
 {
-
     void Start()
     {
-        print("Fuck!");
-        Fade();
+
     }
 
-    public void Fade()
-    {
-        StartCoroutine(FadeTo(0.0f, 1.0f));
-        StartCoroutine(FadeTo(1.0f, 1.0f));
-    }
+        //void Update()
+        //{
+        //}
 
-    IEnumerator FadeTo(float aValue, float aTime)
+        /*IEnumerator Fade(float aValue, float aTime)
     {
-        float alpha = transform.GetComponent<Renderer>().material.color.a;
+
+        float alpha = GetComponent<CanvasRenderer>().GetAlpha();
+
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, aValue, t));
-            transform.GetComponent<Renderer>().material.color = newColor;
+            print(alpha);
+            GetComponent<CanvasRenderer>().SetAlpha(Mathf.Lerp(alpha, aValue, t));
             yield return null;
         }
-    }
+    }*/
 }

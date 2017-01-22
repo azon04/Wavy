@@ -67,12 +67,27 @@ public class GameMode : MonoBehaviour {
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.GetComponent<FirstPersonController>().enabled = false;
+        Fade("/WinUI");
+    }
+
+    void Fade(string ui)
+    {
+        Component[] comps = GameObject.Find(ui).GetComponentsInChildren<Component>();
+
+        foreach (Component c in comps)
+        {
+            if (c is Graphic)
+            {
+                (c as Graphic).CrossFadeAlpha(0, 1, true);
+            }
+        }
     }
 
     protected virtual void StartLose()
     {
         text.enabled = true;
         text.text = "LOSE";
+        Fade("/LoseUI");
     }
 
     void ChangeState(GameState _gameState)
