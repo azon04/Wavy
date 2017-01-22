@@ -9,6 +9,7 @@ public class PlayerCharacter : MonoBehaviour
     public static PlayerCharacter pc;
     public bool isLeftHandTutorial;
     public bool isRightHandTutorial;
+
     // For shooting purposes
     public GameObject particleShot;
     public float shotDistance = 100;
