@@ -1,0 +1,62 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 750M (ID=0xfe4)
+    Vendor:   NVIDIA
+    VRAM:     994 MB
+    Driver:   20.19.15.4463
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.024 seconds
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD1_Data\Managed\System.dll (this message is harmless)
+OnLevelWasLoaded was found on Fading
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+ 
+(Filename:  Line: 382)
+
+desktop: 1920x1080 60Hz; virtual: 3286x1080 at -1366,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.223514 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1c2c -> priority: 1 
+  Thread -> id: 2074 -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.897906 ms
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 4085.
+Total: 1.188019 ms (FindLiveObjects: 0.211688 ms CreateObjectMapping: 0.062864 ms MarkObjects: 0.754807 ms  DeleteObjects: 0.158231 ms)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+LOSE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.830781 ms
+
+Unloading 102 unused Assets to reduce memory usage. Loaded Objects now: 475.
+Total: 0.877115 ms (FindLiveObjects: 0.046186 ms CreateObjectMapping: 0.035067 ms MarkObjects: 0.216819 ms  DeleteObjects: 0.578614 ms)
+
