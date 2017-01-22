@@ -73,6 +73,7 @@ public class PlayerCharacter : MonoBehaviour
 
         if (isDead)
         {
+            //GameMode.gm.ChangeState(GameMode.GameState.LOSE);
             if(deathAnimTime>0)
             {
                 deathAnimTime -= Time.deltaTime;
@@ -108,6 +109,12 @@ public class PlayerCharacter : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void Dead()
+    {
+        isDead = true;
+        GameMode.gm.ChangeState(GameMode.GameState.LOSE);
+    }
+
     public void LoseLife()
     {
         lifes--;
@@ -126,7 +133,7 @@ public class PlayerCharacter : MonoBehaviour
 		if(!coroutinRunning)
 			StartCoroutine("showDamageScreen");
         healthPoint -= healthLoss;
-        if (healthPoint <= 0) LoseLife();
+        if (healthPoint <= 0) Dead(); //LoseLife();
     }
 
 

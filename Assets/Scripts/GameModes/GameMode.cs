@@ -15,8 +15,11 @@ public class GameMode : MonoBehaviour {
 
     public Text text;
 
+    public static GameMode gm;
+
 	// Use this for initialization
 	void Start () {
+        gm = this;
 		if(text != null)
         {
             text.enabled = false;
@@ -71,11 +74,17 @@ public class GameMode : MonoBehaviour {
 
     protected virtual void StartLose()
     {
-        text.enabled = true;
-        text.text = "LOSE";
+        print("LOSE");
+        if (GameUISystem.uiSystem)
+        {
+            GameUISystem.uiSystem.ChangeState(GameUISystem.UIState.LOSE);
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.GetComponent<FirstPersonController>().enabled = false;
     }
 
-    void ChangeState(GameState _gameState)
+   public void ChangeState(GameState _gameState)
     {
         gameState = _gameState;
         if(gameState == GameState.PLAYING)
