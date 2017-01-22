@@ -22,7 +22,9 @@ public class SecondaryFire : MonoBehaviour {
     {
 		secondFire = this;
         remainingShots = maxShots;
-	}
+        m_AudioSource = GetComponent<AudioSource>();
+
+    }
 
 	public void addEnergy(){
 		if (remainingShots < maxShots) {
