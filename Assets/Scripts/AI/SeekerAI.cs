@@ -78,7 +78,7 @@ public class SeekerAI : EnemyAI
             return;
         }
         else {
-            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * defaultRadius;
+            Vector3 randomDirection = UnityEngine.Random.insideUnitCircle * defaultRadius;
             randomDirection += transform.position;
 
             NavMeshHit navHit;
