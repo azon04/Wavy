@@ -17,14 +17,18 @@ public class PrimaryFire : MonoBehaviour {
 	// private
 	bool isHeated;
 
-	void Awake(){
+    [SerializeField] private AudioClip m_ParticleShotSound;
+    [SerializeField] private AudioClip m_ParticleHeatSound;
+    private AudioSource m_AudioSource;
+
+    void Awake(){
 		primaryFire = this;
 	}
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        m_AudioSource = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,20 +42,37 @@ public class PrimaryFire : MonoBehaviour {
 
 	public void Fire(){
 		if (currentHeat < maxHeat && !isHeated) {
-			GameObject newParticleShot = GameObject.Instantiate (particleShot, Camera.main.transform.position + Camera.main.transform.forward * 2, Quaternion.identity);
+			GameObject newParticleShot = GameObject.Instantiate (particleShot, Camera.main.transform.position + Camera.main.transform.forward * 1.0f, Quaternion.identity);
 			ParticleShotScript particleShotScript = newParticleShot.GetComponent<ParticleShotScript> ();
 			particleShotScript.direction = Camera.main.transform.forward;
-
-			currentHeat += heating_speed;
+            PlayParticleShotSound();
+            currentHeat += heating_speed;
 			if (currentHeat >= maxHeat) {
 				isHeated = true;
-				StartCoroutine ("coolingDown");
+                PlayParticleHeatSound();
+                StartCoroutine ("coolingDown");
 			}
 		}
 		Debug.Log ("Primary Fire -- currentHeat = " + currentHeat);
 	}
 
-	IEnumerator coolingDown(){
+    public void PlayParticleShotSound()
+    {
+        if (m_ParticleShotSound)
+        {
+            m_AudioSource.PlayOneShot(m_ParticleShotSound);
+        }
+    }
+
+    public void PlayParticleHeatSound()
+    {
+        if (m_ParticleHeatSound)
+        {
+            m_AudioSource.PlayOneShot(m_ParticleHeatSound);
+        }
+    }
+
+    IEnumerator coolingDown(){
 		
 		yield return new WaitForSeconds (cooldownTime);
 

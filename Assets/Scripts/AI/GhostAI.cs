@@ -14,10 +14,10 @@ public class GhostAI : EnemyAI {
     };
 
     public SeekerState curState;
-    bool following = false;
     float attackDamage = 20f;
     float proximityRadius = 15f;
     float defaultRadius = 5f; //Assign value
+    float attackdist = 2.0f;
     float lightRadius; //Assign value
     float playerDist;
 
@@ -25,6 +25,11 @@ public class GhostAI : EnemyAI {
     NavMeshAgent agent;
     GameObject player;
 
+    void Attack()
+    {
+        PlayerCharacter.pc.LoseHealthPoint(attackDamage * Time.deltaTime);
+        Debug.Log("Player Health" + PlayerCharacter.pc.healthPoint);
+    }
     // Use this for initialization
     void Start()
     {
@@ -36,90 +41,80 @@ public class GhostAI : EnemyAI {
     // Update is called once per frame
     void Update()
     {
+        GameObject[] particleshots = GameObject.FindGameObjectsWithTag("ParticleShot");
         playerPosition = player.transform.position;
         playerDist = (playerPosition - transform.position).magnitude;
-
-        if (curHealth <= 0)
-        {
-            curState = SeekerState.DEATH;//then play the death animation
-            Destroy(this, 1f);
-        }
-
+        
         if (curState == SeekerState.IDLE)
         {
             Wander();
         }
-        /*if (curState == SeekerState.ATTACK)
+        if (curState == SeekerState.ATTACK )
         {
-            Attack();
-        }*/
+            //Wander();
+            if(playerDist < attackdist)
+                Attack();
+            else
+            {
+                //agent.destination = playerPosition;
+                if (particleshots.Length > 0)
+                {
+                    curState = SeekerState.IDLE;
+                    agent.destination = particleshots[particleshots.Length - 1].transform.position;
+                    
+                }
+            }
+        }
+        else
+        {
+            curState = SeekerState.IDLE;
+        }
 
     }
-
+    
     void Wander()
     {
         //put navmesh to go from left to right
         //find distance between Player and enemy
         GameObject[] particleshots = GameObject.FindGameObjectsWithTag("ParticleShot");
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && playerDist <= proximityRadius)
         {
-            if (playerDist <= proximityRadius)
-            {
-                //curState = SeekerState.ATTACK;
-
-                if (Mathf.Abs(this.gameObject.transform.position.x - playerPosition.x) > 0.1 && Mathf.Abs(this.gameObject.transform.position.x - playerPosition.z) > 0.1)
-                {
-                    following = true;
-
-                }
-                else
-                    following = false;
-                agent.destination = playerPosition;
-                return;
-            }
-           
+            curState = SeekerState.ATTACK;
+            agent.destination = playerPosition;
+            return;
+            
         }
-        else if (particleshots.Length>0)
+        else if (particleshots.Length > 0)
         {
-            //curState = SeekerState.ATTACK;
-            following = false;
+            curState = SeekerState.IDLE;
             agent.destination = particleshots[particleshots.Length -1].transform.position;
-           
-           // following = true;
             return;
         }
-        else if(following == false)
+        else
         {
-            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * defaultRadius;
+            Vector3 randomDirection = UnityEngine.Random.insideUnitCircle * defaultRadius;
             randomDirection += transform.position;
 
             NavMeshHit navHit;
             NavMesh.SamplePosition(randomDirection, out navHit, defaultRadius, NavMesh.AllAreas);
             agent.destination = navHit.position;
+            curState = SeekerState.IDLE;
         }
-    }
-
-    IEnumerator Damage()
-    {
-        PlayerCharacter.pc.LoseHealthPoint(attackDamage * Time.deltaTime);
-        yield return null;
+       
     }
 
     void OnTriggerEnter(Collider other)
     {
-        print(other.gameObject.tag);
         if (other.gameObject.tag == "Player")
         {
             curState = SeekerState.ATTACK;//then play the attack animation
-            StartCoroutine(Damage());
         }
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.tag == "Particle")
-        {
-            TakeDamage(5.0f);//Or other.gameObject.particleDamage
-        }
-    }
+	void OnTriggerExit(Collider other){
+		if (other.gameObject.tag == "Player")
+		{
+			curState = SeekerState.IDLE;//then play the attack animation
+		}
+	}
 }

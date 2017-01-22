@@ -16,6 +16,10 @@ public class Animal_spirit : Powerups
     Transform[] path2 = new Transform[4];
     int timer = 0;
     // Use this for initialization
+    [SerializeField] private AudioClip m_CollideSound;
+    [SerializeField] private AudioClip m_RunningSound;
+    [SerializeField] private AudioClip m_DestroySound;
+    private AudioSource m_AudioSource;
     void Start()
     {
         active = false;
@@ -30,6 +34,7 @@ public class Animal_spirit : Powerups
         {
             path2[i] = GameObject.FindGameObjectsWithTag("Path2")[0].transform.GetChild(i).transform;
         }
+        m_AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -79,6 +84,31 @@ public class Animal_spirit : Powerups
         }
     }
 
+    public void PlayDestroySound()
+    {
+        if (m_DestroySound)
+        {
+            m_AudioSource.PlayOneShot(m_DestroySound);
+        }
+    }
+
+    public void PlayRunningSound()
+    {
+        if (m_RunningSound)
+        {
+            m_AudioSource.clip = m_RunningSound;
+            m_AudioSource.Play();
+        }
+    }
+
+    public void PlayCollideSound()
+    {
+        if (m_CollideSound)
+        {
+            m_AudioSource.PlayOneShot(m_CollideSound);
+        }
+    }
+
     protected override void Awake()
     {
 
@@ -93,5 +123,11 @@ public class Animal_spirit : Powerups
         }
 
     }
+
+	void OnCollisionEnter(Collision other){
+		if (other.collider.tag == "Player") {
+			active = true;
+		}
+	}
 
 }

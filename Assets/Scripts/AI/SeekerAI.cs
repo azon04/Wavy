@@ -13,6 +13,8 @@ public class SeekerAI : EnemyAI
     };
 
     public SeekerState curState;
+	public GameObject PowerUp;
+
 
     float attackDamage = 20f;
     float proximityRadius = 15f;
@@ -51,7 +53,10 @@ public class SeekerAI : EnemyAI
         if (curHealth <= 0)
         {
             curState = SeekerState.DEATH;//then play the death animation
-            Destroy(gameObject, 1f);
+
+			GameObject.Instantiate (PowerUp, transform.position, transform.rotation);
+
+            Destroy(gameObject);
         }
 
 		if (curState == SeekerState.IDLE)
@@ -78,7 +83,7 @@ public class SeekerAI : EnemyAI
             return;
         }
         else {
-            Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * defaultRadius;
+            Vector3 randomDirection = UnityEngine.Random.insideUnitCircle * defaultRadius;
             randomDirection += transform.position;
 
             NavMeshHit navHit;
@@ -109,12 +114,12 @@ public class SeekerAI : EnemyAI
         }
     }
 
-    //void OnCollisionEnter(Collision other)
-    //{
-	//	if (other.gameObject.tag == "ParticleShot")
-    //    {
-     //       TakeDamage(5.0f);//Or other.gameObject.particleDamage
-	//		Debug.Log("zombie health = " + curHealth);
-     //   }
-    //}
+    void OnCollisionEnter(Collision other)
+    {
+		if (other.gameObject.tag == "ParticleShot")
+        {
+           TakeDamage(10.0f);//Or other.gameObject.particleDamage
+			Debug.Log("zombie health = " + curHealth);
+        }
+    }
 }
