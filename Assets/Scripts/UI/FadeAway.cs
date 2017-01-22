@@ -1,9 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FadeAway : MonoBehaviour
 {
+
+    void Start()
+    {
+        print("Fuck!");
+        Fade();
+    }
 
     public void Fade()
     {
