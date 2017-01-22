@@ -15,19 +15,22 @@ public class FadeAway : MonoBehaviour
     public void Fade()
     {
         StartCoroutine(FadeTo(0.0f, 1.0f));
-        StartCoroutine(FadeTo(1.0f, 1.0f));
+      // StartCoroutine(FadeTo(1.0f, 1.0f));
     }
 
     IEnumerator FadeTo(float aValue, float aTime)
     {
-        CanvasRenderer[] childrenCanvasRenderer = GetComponentsInChildren<CanvasRenderer>();
-        
-        float alpha = transform.GetComponent<Renderer>().material.color.a;
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        CanvasRenderer[] childrenCanvasRenderers = GetComponentsInChildren<CanvasRenderer>();
+
+        foreach (CanvasRenderer renderer in childrenCanvasRenderers)
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, aValue, t));
-            transform.GetComponent<Renderer>().material.color = newColor;
-            yield return null;
+            float alpha = renderer.GetAlpha();
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime )
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha, aValue, t));
+                renderer.SetAlpha(Mathf.Lerp(alpha, aValue, t));
+                yield return new WaitForEndOfFrame();
+            }
         }
     }
 }
