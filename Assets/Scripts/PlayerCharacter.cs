@@ -45,7 +45,7 @@ public class PlayerCharacter : MonoBehaviour {
 
     void ShootWave()
     {
-        waveCount--;
+        //waveCount--;
 
         // TODO Wave
 
