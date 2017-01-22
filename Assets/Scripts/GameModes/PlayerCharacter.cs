@@ -91,7 +91,7 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
-    void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0.0f;
         GameUISystem.uiSystem.ChangeState(GameUISystem.UIState.PAUSE);
@@ -100,7 +100,7 @@ public class PlayerCharacter : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    void UnPauseGame()
+    public void UnPauseGame()
     {
         Time.timeScale = 1.0f;
         GameUISystem.uiSystem.ChangeState(GameUISystem.UIState.HUD);
