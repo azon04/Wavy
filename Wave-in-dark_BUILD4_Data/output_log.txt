@@ -1,0 +1,128 @@
+Initialize engine version: 5.5.0f3 (38b4efef76f0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 750M (ID=0xfe4)
+    Vendor:   NVIDIA
+    VRAM:     994 MB
+    Driver:   20.19.15.4463
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.027 seconds
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Chunze Chen\Desktop\Wavy\Wave-in-dark_BUILD4_Data\Managed\System.dll (this message is harmless)
+OnLevelWasLoaded was found on Fading
+This message has been deprecated and will be removed in a later version of Unity.
+Add a delegate to SceneManager.sceneLoaded instead to get notifications after scene loading has completed
+ 
+(Filename:  Line: 382)
+
+desktop: 1920x1080 60Hz; virtual: 3286x1080 at -1366,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.111321 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2b94 -> priority: 1 
+  Thread -> id: 195c -> priority: 1 
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.221211 ms
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 4019.
+Total: 1.593433 ms (FindLiveObjects: 0.233498 ms CreateObjectMapping: 0.071845 ms MarkObjects: 0.784742 ms  DeleteObjects: 0.502491 ms)
+
+1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 2
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 3.3993
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 50
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 40
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 4.730097
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 40
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 30
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 6.068378
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 30
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 7.468655
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 20
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 8.731991
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 10
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+zombie health = 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 9.933151
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Primary Fire -- currentHeat = 11.33517
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
